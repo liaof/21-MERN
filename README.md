@@ -1,19 +1,36 @@
 ### Summary 
-- Explain the difference between GraphQL and RESTful APIs.
-- Configure a proxy server for local development of a MERN application.
-- Implement client-side routing using React Router.
-- Build API endpoints with GraphQL in a MERN application.
-- Successfully configure and deploy a MERN application to Heroku.
-- Implement authentication with JWT.
+- Explain the difference between GraphQL and RESTful APIs.</br>
+- Configure a proxy server for local development of a MERN application.</br>
+- Implement client-side routing using React Router.</br>
+- Build API endpoints with GraphQL in a MERN application.</br>
+- Successfully configure and deploy a MERN application to Heroku.</br>
+- Implement authentication with JWT.</br>
+
+Hosted on : localhost:3001/graphql
+
+## Concepts
+With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT, DELETE). In GraphQL, these operations are split between:
+
+- Queries - perform GET requests and ask for data from a GraphQL API</br>
+- Mutations - perform POST, PUT, DELETE requests to manipulate data from GraphQL API 
+
+##### To setup a GraphQL API, two important things must be defined, which together form a schema:
+- Type Definitions - GraphQL API allows for the literal defining of every piece of data the client expects to do CRUD operations on. Effectively, not only are we defining the API endpoint but also we are defining the exact data and parameters associated with that endpoint
+
+- Resolvers - the functions connected to each query or mutation type definition, in order to perform the CRUD operations
 
 
-
+### Tech Used
 - MongoDB</br>
 - Express.js</br>
 - React</br>
 - Node.js</br>
 
+
+
 - GraphQL is a query language for APIs and a runtime for fulfilling queries with your existing data, giving clients the power to ask for exactly what they need and nothing more. For this module’s application, you’ll use the graphql package to parse GraphQL syntax in both your front-end and back-end codebase.
+
+- GraphQL playgroud: npm run watch, then go to localhost:3001/graphql
 
 - Apollo Server is an open-source, spec-compliant GraphQL server that's compatible with any GraphQL client, including Apollo Client, the client you’ll use in your MERN application. You’ll use the apollo-server-express package to integrate GraphQL into your Express.js server, and the @apollo/client package to make requests from your React front end to the GraphQL API.
 
