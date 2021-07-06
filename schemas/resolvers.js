@@ -20,9 +20,22 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+              const userData = await User.findOne({ _id: context.user._id })
+                .select('-__v -password')
+                .populate('thoughts')
+                .populate('friends');
+          
+              return userData;
+            }
+            // if no context.user exists, we know the user isn't authenticated and we can thrown an error
+            // if there is a valid token in the http query, then the user is authenticated and the website knows if someone is logged in or not
+            throw new AuthenticationError('Not logged in');
+        },
         // get all thoughts resolver
         thoughts: async (parent, { username }) => {
-            // the question mark is a ternary operator, and it means
+            // the question mark is a ternary operator, and it means:
             // if username exists, set params to an object with a username key set to the original username's value, and if it doesn't exist
             // return username as an empty object
             const params = username ? { username } : {};
@@ -47,16 +60,16 @@ const resolvers = {
                 .populate('friends')
                 .populate('thoughts')
         },
+        
     },
     Mutation: {
         addUser: async (parent, args) => {
             const user = await User.create(args);
             // sign token and return an object that combines the token, and the user's data
-            //const token = signToken(user);
-            return user;
-            //return { user, token };
+            const token = signToken(user);
+            return { user, token };
         },
-        login: async (parent, { email, password }) => {
+        login: async (parent, { email, password }) => {// module 21.2.3 for login explaination
             const user = await User.findOne({ email });
           
             if (!user) {
@@ -71,7 +84,52 @@ const resolvers = {
           
             const token = signToken(user);
             return { token, user };
-          }
+        },
+        addThought: async (parent, args, context) => {
+            // only logged in users are able to use this mutation; context.user must exist, and .user is only added to context if the verification passes
+            // .user contains the username, email and _id properties 
+            if (context.user) {
+              // create a thought with a username property equal to that of context.user's
+              const thought = await Thought.create({ ...args, username: context.user.username });// ...args = email and _id properties
+          
+              await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { thoughts: thought._id } },
+                { new: true }
+              );
+          
+              return thought;
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addReaction: async (parent, { thoughtId, reactionBody }, context) => {
+            if (context.user) {
+              const updatedThought = await Thought.findOneAndUpdate(
+                { _id: thoughtId },
+                { $push: { reactions: { reactionBody, username: context.user.username } } },
+                { new: true, runValidators: true }
+              );
+          
+              return updatedThought;
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addFriend: async (parent, { friendId }, context) => {
+            if (context.user) {
+              const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                // addToSet instead of Push prevents adding duplicates, because you can't be friends with the same user twice over
+                { $addToSet: { friends: friendId } },
+                { new: true }
+              ).populate('friends');
+          
+              return updatedUser;
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 };
 

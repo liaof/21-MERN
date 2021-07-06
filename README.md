@@ -38,7 +38,7 @@ With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT
 
 - The concurrently npm package allows you to run multiple processes, or servers, from a single command-line interface. Rather than opening multiple terminals to start the multiple servers, you can run them both at the same time. It also allows you to keep track of different outputs in one place, and will stop all of your processes if even one of them fails.
 
-- JSON Web Tokens, or JWTs, are an alternative to using session cookies for authentication. You’ll use the jsonwebtoken package in your MERN applications.
+- JSON Web Tokens, or JWTs, are an alternative to using session cookies for authentication. You’ll use the jsonwebtoken package in your MERN applications. Tokens can be included with a request as part of the body, in the query string (?token=abc), or as an HTTP header(best practice)
 
 - jwt-decode is an npm package that helps decode JWTs from their Base64Url encoding. You’ll use it to extract non-sensitive data such as the token’s expiration date to see if it’s expired before making a request to the server.
 
