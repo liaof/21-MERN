@@ -36,15 +36,15 @@ With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT
 
 - React Router is a collection of navigational components that compose declaratively with your application, allowing you to make your single-page React applications behave more like multi-page applications. You’ll use the react-router-dom npm package to work with React Router in your applications.
 
-The concurrently npm package allows you to run multiple processes, or servers, from a single command-line interface. Rather than opening multiple terminals to start the multiple servers, you can run them both at the same time. It also allows you to keep track of different outputs in one place, and will stop all of your processes if even one of them fails.
+- The concurrently npm package allows you to run multiple processes, or servers, from a single command-line interface. Rather than opening multiple terminals to start the multiple servers, you can run them both at the same time. It also allows you to keep track of different outputs in one place, and will stop all of your processes if even one of them fails.
 
-JSON Web Tokens, or JWTs, are an alternative to using session cookies for authentication. You’ll use the jsonwebtoken package in your MERN applications.
+- JSON Web Tokens, or JWTs, are an alternative to using session cookies for authentication. You’ll use the jsonwebtoken package in your MERN applications.
 
-jwt-decode is an npm package that helps decode JWTs from their Base64Url encoding. You’ll use it to extract non-sensitive data such as the token’s expiration date to see if it’s expired before making a request to the server.
+- jwt-decode is an npm package that helps decode JWTs from their Base64Url encoding. You’ll use it to extract non-sensitive data such as the token’s expiration date to see if it’s expired before making a request to the server.
 
-The faker npm package allows you to generate massive amounts of fake data in the development environment of your Node.js applications.
+- The faker npm package allows you to generate massive amounts of fake data in the development environment of your Node.js applications.
 
-The nodemon package simplifies your development environment by automatically restarting your Node.js applications when file changes in the directory are detected.
+- The nodemon package simplifies your development environment by automatically restarting your Node.js applications when file changes in the directory are detected.
 
 
 ### Lesson Goals
