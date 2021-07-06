@@ -51,3 +51,9 @@ The nodemon package simplifies your development environment by automatically res
 - Integrated the Apollo Server GraphQL library to handle data requests to our API.
 - Built both query type definitions and resolvers for retrieving data from our MongoDB database.
 - Used the GraphQL Playground interface to thoroughly test our GraphQL queries.
+- Perform create and update operations with GraphQL mutations.
+- Implement JSON Web Tokens for authentication.
+
+
+#### Usage
+npm run watch, then go to http://localhost:3001/graphql

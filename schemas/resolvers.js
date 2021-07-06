@@ -1,4 +1,6 @@
 const { User, Thought } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 // A resolver can accept 4 arguments in following order:
 
@@ -45,6 +47,32 @@ const resolvers = {
                 .populate('friends')
                 .populate('thoughts')
         },
+    },
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            // sign token and return an object that combines the token, and the user's data
+            //const token = signToken(user);
+            return user;
+            //return { user, token };
+        },
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+          
+            if (!user) {
+              throw new AuthenticationError('Incorrect credentials');
+            }
+          
+            const correctPw = await user.isCorrectPassword(password);
+          
+            if (!correctPw) {
+              throw new AuthenticationError('Incorrect credentials');
+            }
+            
+            return user;
+            //const token = signToken(user);
+            //return { user, token };
+        }
     }
 };
 

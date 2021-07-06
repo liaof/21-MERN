@@ -56,7 +56,15 @@ const typeDefs = gql`
         thoughts(username: String): [Thought]
         thought(_id: ID!): Thought
     }
-`;// exclaimation marks after the parameter data types means the data MUST exist, 
+    type Mutation {
+        login(email: String!, password: String!): User
+        addUser(username: String!, email: String!, password: String!): User
+    }
+    type Auth {
+        token: ID!
+        user: User
+    }
+`;// exclaimation marks after the parameter data types means we MUST pass that parameter, 
 //else Apollo wil short circuit and return an error without making a request
 
 // export the typeDefs
