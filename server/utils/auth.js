@@ -26,7 +26,7 @@ module.exports = {
         if (!token) {
           return req;
         }
-      
+        // when an error is thrown within a try block, it immediately skips to catch. This can prevent an excessive amount of error messages from being displayed when there is an error
         try {
           // decode and attach user data to request object
           const { data } = jwt.verify(token, secret, { maxAge: expiration });// if the secret here doesnt match the secret returned in line 11 by jwt.sign(), the token is invalid and the object will not be decoded

@@ -50,9 +50,16 @@ With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT
 ### Lesson Goals
 - Integrated the Apollo Server GraphQL library to handle data requests to our API.
 - Built both query type definitions and resolvers for retrieving data from our MongoDB database.
+
 - Used the GraphQL Playground interface to thoroughly test our GraphQL queries.
 - Perform create and update operations with GraphQL mutations.
 - Implement JSON Web Tokens for authentication.
+
+- Implement the tools to manage the full-stack MERN application for both production and development environments.
+
+- Organize and lay out the client-side React application files.
+
+- Use the Apollo Client library to consume the GraphQL API to display thought data.
 
 
 #### Usage
