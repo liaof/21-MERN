@@ -1,0 +1,1 @@
+Pages are composed of Componenets, and which Page is being rendered is controlled by App.js
