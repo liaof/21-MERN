@@ -1,7 +1,13 @@
 import React from 'react';
+import Auth from '../../utils/auth';
 
 // the Link componenet will change the URL
 import { Link } from 'react-router-dom';
+
+const logout = event => {
+  event.preventDefault();
+  Auth.logout();
+};
 
 const Header = () => {
   return (
@@ -12,8 +18,20 @@ const Header = () => {
         </Link>
 
         <nav className="text-center">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          {/* when a page renders the <Header> componenet, check if the user is logged in and return the profile link if yes, and the login/signup links if not */}
+          {Auth.loggedIn() ? (
+            <>
+              <Link to="/profile">Me</Link>
+              <a href="/" onClick={logout}>{/* run the logout() function to logout and return to main page */}
+                Logout
+              </a>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
+            </>
+          )}
         </nav>
       </div>
     </header>

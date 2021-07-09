@@ -56,10 +56,13 @@ With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT
 - Implement JSON Web Tokens for authentication.
 
 - Implement the tools to manage the full-stack MERN application for both production and development environments.
-
 - Organize and lay out the client-side React application files.
-
 - Use the Apollo Client library to consume the GraphQL API to display thought data.
+
+- Set up front-end functionality to create and log in a user using mutations.
+- Implement a front-end authentication service to help manage a user’s logged-in status.
+- Contextualize the app to a logged-in user.
+- Set up queries to display the logged-in user’s data on pages.
 
 
 #### Usage
