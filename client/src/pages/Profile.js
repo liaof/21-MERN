@@ -1,15 +1,19 @@
 import React from 'react';
 // Redirect allows the user to redirect to another route within the application, like location.replace() but it doesn't reload the browser
 import { Redirect, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
+import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import { ADD_FRIEND } from '../utils/mutations';
 
 const Profile = () => {
+  // useMutation is middleware that wraps the ADD_FRIEND query with a function callled addFriend(serverside resolver), this allows us to use the query in a click function
+  const [addFriend] = useMutation(ADD_FRIEND);
   const { username: userParam } = useParams();// get $username from url and call it userParam
 
   // if userParam!=null, use that value to run QUERY_USER, else run QUERY_ME
@@ -20,6 +24,17 @@ const Profile = () => {
   
   // QUERY_ME returns a me object, QUERY_USER returns a user object, so we set the user const used in the JSX to handle both
   const user = data?.me || data?.user || {};
+
+  const handleClick = async () => {
+    // use the mutation ADD_FRIEND, passing user._id as the parameter 
+    try {
+      await addFriend({
+        variables: { id: user._id }
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   // redirect to personal profile page if profile/username is the logged-in user's
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -42,10 +57,17 @@ const Profile = () => {
   return (
     <div>
       <div className="flex-row mb-3">
-        {/* note if we are logged in, and we go to our own profile, the URL gets redirected which means userParam=null */}
+        {/* note if we are logged in, and we go to our own profile, the URL gets redirected to profile/ which means userParam=null */}
+        {/* basically if userParam = false, we go to our own profile */}
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
         </h2>
+        {/* allow us to add the user as a friend if we are logged in */}
+        {userParam && (
+          <button className="btn ml-auto" onClick={handleClick}>
+            Add Friend
+          </button>
+        )}
       </div>
 
       <div className="flex-row justify-space-between mb-3">
@@ -63,6 +85,8 @@ const Profile = () => {
           />
         </div>
       </div>
+      {/* we only want to render the form when we are on our own profile, aka when the url is just profile/ */}
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };

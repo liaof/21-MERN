@@ -4,7 +4,7 @@ import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 const Signup = () => {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-  // return the ADD_USER mutation wrapped in a function called 'addUser', which has the ability to error check the mutation query
+  // return the ADD_USER mutation wrapped in a function called 'addUser'(serverside resolver), and give it the ability to error check the mutation query
   const [addUser, { error }] = useMutation(ADD_USER);
 
   // this function updates the formState's values everytime we change the value of an input field
