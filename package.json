@@ -4,9 +4,8 @@
   "description": "- Explain the difference between GraphQL and RESTful APIs.</br>\r - Configure a proxy server for local development of a MERN application.</br>\r - Implement client-side routing using React Router.</br>\r - Build API endpoints with GraphQL in a MERN application.</br>\r - Successfully configure and deploy a MERN application to Heroku.</br>\r - Implement authentication with JWT.</br>",
   "main": "server/server.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
