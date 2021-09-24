@@ -28,6 +28,7 @@ app.use(express.json());
 // all files in the React app's build folder in the client folder
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
+  console.log('ln 31')
 }
 // if we make a GET request to an undefined route, respond with the production ready(it's in the build folder) React front end
 app.get('*', (req, res) => {
@@ -36,6 +37,7 @@ app.get('*', (req, res) => {
 
 //listens for a successful connection, then starts the server
 db.once('open', () => {
+  console.log('ln 40');
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
     // log where we can go to test our GQL API
