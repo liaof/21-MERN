@@ -8,7 +8,7 @@
 - Implement authentication with JWT.</br>
 
 #### Usage
-npm run develop, then go to http://localhost:3001/graphql and http://localhost:3000
+npm run watch, then go to http://localhost:3001/graphql and http://localhost:3000
 
 ## Concepts
 With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT, DELETE). In GraphQL, these operations are split between:
