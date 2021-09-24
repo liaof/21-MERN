@@ -7,7 +7,8 @@
 - Successfully configure and deploy a MERN application to Heroku.</br>
 - Implement authentication with JWT.</br>
 
-Hosted on : localhost:3001/graphql
+#### Usage
+npm run watch, then go to http://localhost:3001/graphql and http://localhost:3000
 
 ## Concepts
 With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT, DELETE). In GraphQL, these operations are split between:
@@ -78,5 +79,3 @@ With RESTful APIs, CRUD operations are implemented by HTTP verbs (GET, POST, PUT
 - Deploy a MERN app to Heroku.
 
 
-#### Usage
-npm run watch, then go to http://localhost:3001/graphql
